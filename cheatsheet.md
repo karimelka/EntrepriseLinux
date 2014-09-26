@@ -12,6 +12,7 @@ Handige commando's bij het gebruik van Vagrant
  Vagrant file wegdoen (je kan ze ook zo proper houden) | ```vagrant destroy```
  Machine opslaan maar niet afsluiten |```vagrant suspend```
  Machine volledig uitschakelen | ```vagrant halt```
+ Weten hoe je uw virtuele machine hebt genoemt |  ```vagrant boxlist```
 
 
 ##Diversen
