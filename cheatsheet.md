@@ -10,6 +10,8 @@ Wat het doet| Commando
  Inloggen via vagrant op uw machine ssh | vagrant ssh
  nieuwe ifconfig | ip -a
  Vagrant file wegdoen (je kan ze ook zo proper houden) | vagrant destroy
+ Machine opslaan maar niet afsluiten |vagrant suspend
+ Machine volledig uitschakelen | vagrant halt
 
 
 ##Diversen
