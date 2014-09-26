@@ -1,8 +1,8 @@
 #Vagrant
 Handige commando's bij het gebruik van Vagrant
  
-Wat het doet| Commando
- ----------| -------
+ Wat het doet| Commando
+ ----------| -------------------
  Toevoegen van een bestand aan vagrant| vagrant box add
  Toevoegen vagrant toestel aan in virtualbox directory| vagrant init (naam)
  Toevoegen machine aan virtualbox | vagrant up
