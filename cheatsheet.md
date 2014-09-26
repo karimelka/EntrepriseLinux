@@ -9,6 +9,7 @@ Wat het doet| Commando
  Overzicht over de vm's die aanstaan | vagrant status
  Inloggen via vagrant op uw machine ssh | vagrant ssh
  nieuwe ifconfig | ip -a
+ Vagrant file wegdoen (je kan ze ook zo proper houden) | vagrant destroy
 
 
 ##Diversen
