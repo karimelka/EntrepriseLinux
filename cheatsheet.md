@@ -14,6 +14,10 @@ Handige commando's bij het gebruik van Vagrant
  Machine volledig uitschakelen | ```vagrant halt```
  Weten hoe je uw virtuele machine hebt genoemt |  ```vagrant boxlist```
 
+#Git
+Als je een bestand will pushen via de terminal (als er een SSH is opgesteld)
+
+```git add Week01.md```
 
 ##Diversen
  <Opgelet : Bij het installeren zijn we erop gebotst dat je echt in de folder moet zitten om succes te hebben. Screenshot hiervan zal nog worden toegevoegd>
