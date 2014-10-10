@@ -31,7 +31,7 @@ en dan voor de code naar de remote te sturen : git push -u origin master
  <Opgelet : Bij het installeren zijn we erop gebotst dat je echt in de folder moet zitten om succes te hebben. Screenshot hiervan zal nog worden toegevoegd>
  |Wisselen van schijven in bash|``` /d/Users/... ```| -----
  
- ###Maria DB
- In Centos 7 is MySQL niet meer beschikbaar
- Je moet dit veranderen aan MariaDB.
- Bij het maken van de .yml file hiermee rekening houden
+###Maria DB
+In Centos 7 is MySQL niet meer beschikbaar
+Je moet dit veranderen aan MariaDB.
+Bij het maken van de .yml file hiermee rekening houden
