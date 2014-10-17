@@ -36,3 +36,5 @@ In Centos 7 is MySQL niet meer beschikbaar
 Je moet dit veranderen aan MariaDB.
 Bij het maken van de .yml file hiermee rekening houden
 Indien je het wachtwoord veranderd hebt in de dbpasswd mag het zeker geen vreemde tekens bevatten
+
+rpm -lq
