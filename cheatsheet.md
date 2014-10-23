@@ -55,10 +55,12 @@ Handige commando's bij het gebruik van Vagrant
  Testen van de apache | ```http://ipadresvandeserver```
  Inschakelen apache via commando | ```sudo systemctl enable httpd.service```
 
-# .gitignore
+#.gitignore
 
-# Ignore hidden Vagrant-directory
+Ignore hidden Vagrant-directory
 .vagrant
 
-# Ignore backup files
+Ignore backup files
 *~
+
+
