@@ -54,3 +54,11 @@ Handige commando's bij het gebruik van Vagrant
  Opstarten van apache | ```sudo systemctl start httpd.service```
  Testen van de apache | ```http://ipadresvandeserver```
  Inschakelen apache via commando | ```sudo systemctl enable httpd.service```
+
+# .gitignore
+
+# Ignore hidden Vagrant-directory
+.vagrant
+
+# Ignore backup files
+*~
