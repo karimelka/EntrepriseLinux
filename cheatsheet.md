@@ -64,7 +64,6 @@ Ignore backup files
 *~
 
 #VagrantFile
-------------------
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -117,23 +116,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 end
 
-#Ansible/host_vars/srv001
----------------------------
+#Ansible/roles/common/tasks/main.yml
 
+Installeren van common packages en firewall en selinux
+-------------------------------------------------------
+# roles/common/main.yml
 ---
-# file group_vars/all
+- name: Install common packages
+  yum: pkg={{item}} state=installed
+  with_items:
+    - libselinux-python
+    
+- name: activate selinux enforcing
+  selinux: state=enforcing policy=targeted
 
-# Application database
-dbname: MijnWikiDatabase
-dbuser: gebruiker_stoel
-dbpasswd: ABC123
+- name: Enable Firewall
+  service: name=firewalld state=running enabled=true
 
-# Disable All Updates
-# By default automatic updates are enabled, set this value to true to disable all automatic updates
-auto_up_disable: false
 
-#Define Core Update Level
-#true  = Development, minor, and major updates are all enabled
-#false = Development, minor, and major updates are all disabled
-#minor = Minor updates are enabled, development, and major updates are disabled
-core_update_level: true
