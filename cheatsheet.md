@@ -64,6 +64,7 @@ Ignore backup files
 *~
 
 #VagrantFile
+------------------
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -115,3 +116,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 end
+
+#Ansible/host_vars/srv001
+---------------------------
+
+---
+# file group_vars/all
+
+# Application database
+dbname: MijnWikiDatabase
+dbuser: gebruiker_stoel
+dbpasswd: ABC123
+
+# Disable All Updates
+# By default automatic updates are enabled, set this value to true to disable all automatic updates
+auto_up_disable: false
+
+#Define Core Update Level
+#true  = Development, minor, and major updates are all enabled
+#false = Development, minor, and major updates are all disabled
+#minor = Minor updates are enabled, development, and major updates are disabled
+core_update_level: true
