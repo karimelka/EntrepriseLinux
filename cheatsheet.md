@@ -181,3 +181,37 @@ Installeren van common packages en firewall en selinux
     - [ true, false ]
   tags: web
   
+
+#Wordpress
+Er zijn drie folders onder ansible/roles/wordpress
+De eerste folder is de files folder waar de tar.gz inzit
+De tweede folder bevat de tasks met daarin een mail.yml erin
+
+---  
+- name: Extract mediawiki to server
+  unarchive: src=wordpress.tar.gz dest=/var/www/html/
+
+- name: Add group "wordpress"
+  group: name=wordpress
+
+- name: Add user "wordpress"
+  user: name=wordpress group=wordpress home=/var/www/html/
+
+- name: Fetch random salts for Wordpress config
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  register: "wp_salt"
+  sudo: no
+
+- name: Create Wordpress database
+  mysql_db: name={{ dbname }} state=present
+
+- name: Create Wordpress database user
+  mysql_user: name={{ dbuser }} password={{ dbpasswd }} priv={{ dbname }}.*:ALL host='localhost' state=present
+
+- name: Copy Wordpress config file
+  template: src=wp-config.php dest=/var/www/html/
+
+- name: Change ownership of Wordpress installation
+  file: path=/var/www/html/ owner=wordpress group=wordpress state=directory recurse=yes
+
+De derde folder bevat templates waar de WP_config file is in opgeslaan.
