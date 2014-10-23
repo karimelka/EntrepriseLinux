@@ -133,4 +133,25 @@ Installeren van common packages en firewall en selinux
 - name: Enable Firewall
   service: name=firewalld state=running enabled=true
 
+#Ansible/roles/db/tasks
+------------------------
+---
+# file db/tasks/main.yml
+- name: Install MySQL
+  yum: pkg={{item}} state=installed
+  with_items:
+    - mariadb
+    - mariadb-server
+    - MySQL-python
+
+- name: Start MySQL service
+  service: name=mariadb state=running enabled=yes
+
+- name: Create application database
+  mysql_db: name={{ dbname }} state=present
+
+- name: Create application database user
+  mysql_user: name={{ dbuser }} password={{ dbpasswd }}
+                priv=*.*:ALL host='localhost' state=present
+
 
