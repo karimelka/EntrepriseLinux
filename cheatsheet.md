@@ -45,7 +45,7 @@ Indien je het wachtwoord veranderd hebt in de dbpasswd mag het zeker geen vreemd
 rpm -lq
 
 ####Install Apache
-#Vagrant
+
 Handige commando's bij het gebruik van Vagrant
  
  Wat het doet| Commando
