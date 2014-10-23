@@ -37,4 +37,20 @@ Je moet dit veranderen aan MariaDB.
 Bij het maken van de .yml file hiermee rekening houden
 Indien je het wachtwoord veranderd hebt in de dbpasswd mag het zeker geen vreemde tekens bevatten
 
+ Wat het doet| Commando
+ ----------| -------------------
+ Installeren van MariaDB| ```sudo yum install mariadb-server mariadb```
+ Opstarten van apache | ```sudo systemctl start mariadb```
+
 rpm -lq
+
+####Install Apache
+#Vagrant
+Handige commando's bij het gebruik van Vagrant
+ 
+ Wat het doet| Commando
+ ----------| -------------------
+ Installeren van apache| ```sudo yum install httpd```
+ Opstarten van apache | ```sudo systemctl start httpd.service```
+ Testen van de apache | ```http://ipadresvandeserver```
+ Inschakelen apache via commando | ```sudo systemctl enable httpd.service```
