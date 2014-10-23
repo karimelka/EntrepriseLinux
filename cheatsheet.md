@@ -154,4 +154,30 @@ Installeren van common packages en firewall en selinux
   mysql_user: name={{ dbuser }} password={{ dbpasswd }}
                 priv=*.*:ALL host='localhost' state=present
 
+#roles/web/tasks/main.yml
+------------------------------
+---
+# file web/tasks/main.yml
+- name: Install Apache
+  yum: pkg={{item}} state=installed
+  with_items:
+    - httpd
+    - mod_ssl
+    - php
+    - php-xml
+    - php-mysql
 
+- name: Start Apache service
+  service: name=httpd state=running enabled=yes
+  
+- name: Apply Firewall rules
+  firewalld:
+    zone=public
+    service={{ item[0] }}
+    state=enabled
+    permanent={{ item[1] }}
+  with_nested:
+    - [ http, https ]
+    - [ true, false ]
+  tags: web
+  
