@@ -27,11 +27,11 @@ ga naar de folder en doe dan git add
 
 en dan voor de code naar de remote te sturen : git push -u origin master
 
-##Diversen
+#Diversen
  <Opgelet : Bij het installeren zijn we erop gebotst dat je echt in de folder moet zitten om succes te hebben. Screenshot hiervan zal nog worden toegevoegd>
  |Wisselen van schijven in bash|``` /d/Users/... ```| -----
  
-###Maria DB
+#Maria DB
 In Centos 7 is MySQL niet meer beschikbaar
 Je moet dit veranderen aan MariaDB.
 Bij het maken van de .yml file hiermee rekening houden
@@ -44,7 +44,7 @@ Indien je het wachtwoord veranderd hebt in de dbpasswd mag het zeker geen vreemd
 
 rpm -lq
 
-####Install Apache
+#Install Apache
 
 Handige commando's bij het gebruik van Vagrant
  
