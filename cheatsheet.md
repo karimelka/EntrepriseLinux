@@ -83,9 +83,12 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  Wat het doet| Commando
  ----------| -------------------
  Begin van testen| ```@test```
+ Exit status : 0 | ```OK/true```
+ Exit status : 1-255 | ```niet OK/FALSE```
 
 #Fundamenten
  Wat het doet| Commando
  ----------| -------------------
  Begin van testen| ```$(cmd) wordt opgevangen in een andere variabele result=$()```
+ Logische expressies [ -n =test (-n gaat kijken of het niet leeg is/-z kijken of het wel leeg is
  
