@@ -83,3 +83,9 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  Wat het doet| Commando
  ----------| -------------------
  Begin van testen| ```@test```
+
+#Fundamenten
+ Wat het doet| Commando
+ ----------| -------------------
+ Begin van testen| ```$(cmd) wordt opgevangen in een andere variabele result=$()```
+ 
