@@ -101,4 +101,5 @@ Logische expressies | ```[  -n =test  ```
 Getallen gaan vergelijken |  ```-eq ```
 Kijken of string leeg is |  ```-z ```
 Kijken of string niet leeg is | ``` -n ```
+Runnen van een bash scirpt | ``` ./scriptnaam.sh ```
  
