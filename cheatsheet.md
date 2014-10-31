@@ -43,6 +43,10 @@ apt: pkg={{ item }} state={{ bind_pkg_state }}
 with_items: bind_pkgs
 tags: package
 ```
+
+De naam van de rol nog bijzetten bij ```ansible/host_vars/site.yml```
+Als je dan  ```vagrant provision ``` doet moet hij het runnen
+
 #Maria DB
 In Centos 7 is MySQL niet meer beschikbaar
 Je moet dit veranderen aan MariaDB.
