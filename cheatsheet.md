@@ -89,7 +89,7 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  Begin van testen| ```@test```
  Exit status : 0 | ```OK/true```
  Exit status : 1-255 | ```niet OK/FALSE```
-
+ Runnen van bats | ```./bats/bin/bats srv001/testDNS.bats```
 #Fundamenten
 Gaan kijken in  ```man-tests ```
 
