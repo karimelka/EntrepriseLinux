@@ -93,7 +93,7 @@ Gaan kijken in  ```man-tests ```
 Wat het doet| Commando
 ----------| -------------------
 Begin van testen| ```$(cmd) wordt opgevangen in een andere variabele result=$()```
-Logische expressies | [  ```-n =test  ```
+Logische expressies | ```[  -n =test  ```
 Getallen gaan vergelijken |  ```-eq ```
 Kijken of string leeg is |  ```-z ```
 Kijken of string niet leeg is | ``` -n ```
