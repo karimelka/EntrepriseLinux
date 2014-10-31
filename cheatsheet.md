@@ -30,7 +30,19 @@ en dan voor de code naar de remote te sturen : git push -u origin master
 #Diversen
  <Opgelet : Bij het installeren zijn we erop gebotst dat je echt in de folder moet zitten om succes te hebben. Screenshot hiervan zal nog worden toegevoegd>
  |Wisselen van schijven in bash|``` /d/Users/... ```| -----
- 
+
+#Ansible
+Als je iets wil installeren moet je dit toevoegen in een .yml bestand. Per rol wordt er in principe een folder aangemaakt. 
+
+vb : installeren van bind : het scriptje wordt geplaats in de volgende folder : ```ansible/roles/bind/tasks/main.yml```
+
+De code die je hierin zet is een beetje gelijkaardig bij andere dingen : 
+```
+- name: install bind packages
+apt: pkg={{ item }} state={{ bind_pkg_state }}
+with_items: bind_pkgs
+tags: package
+```
 #Maria DB
 In Centos 7 is MySQL niet meer beschikbaar
 Je moet dit veranderen aan MariaDB.
