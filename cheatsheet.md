@@ -66,3 +66,8 @@ Installeren van het pakket| ```sudo yum -y install rdesktop```
 Connecie maken met een systeem| ```rdesktop -u gebruikersnaam hostname:poortnummer```
 
 voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.com:3389```
+
+#BATS
+ Wat het doet| Commando
+ ----------| -------------------
+ Begin van testen| ```@test```
