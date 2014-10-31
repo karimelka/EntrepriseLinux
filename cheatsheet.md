@@ -87,8 +87,12 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  Exit status : 1-255 | ```niet OK/FALSE```
 
 #Fundamenten
+Gaan kijken in  ```man-tests ```
  Wat het doet| Commando
  ----------| -------------------
  Begin van testen| ```$(cmd) wordt opgevangen in een andere variabele result=$()```
- Logische expressies [ -n =test (-n gaat kijken of het niet leeg is/-z kijken of het wel leeg is
+ Logische expressies | [  ```-n =test  ```
+ Getallen gaan vergelijken |  ```-eq ```
+ Kijken of string leeg is |  ```-z ```
+ Kijken of string niet leeg is | ``` -n ```
  
