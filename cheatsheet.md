@@ -31,6 +31,7 @@ en dan voor de code naar de remote te sturen : git push -u origin master
  <Opgelet : Bij het installeren zijn we erop gebotst dat je echt in de folder moet zitten om succes te hebben. Screenshot hiervan zal nog worden toegevoegd>
  |Wisselen van schijven in bash|``` /d/Users/... ```| -----
 
+Opletten voor dubbele quotes die niet kunnen werken
 #Ansible
 Als je iets wil installeren moet je dit toevoegen in een .yml bestand. Per rol wordt er in principe een folder aangemaakt. 
 
