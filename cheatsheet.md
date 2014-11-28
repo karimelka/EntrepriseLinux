@@ -105,3 +105,4 @@ Kijken of string niet leeg is | ``` -n ```
 Runnen van een bash scirpt | ``` ./scriptnaam.sh ```
 Package vinden op commando | ```yum provides *bin/dig```
 Logfiles opvragen van een bepaalde service | ```sudo journal ctl -f -u named.service```
+Ipconfig | ```ifconfig -a```
