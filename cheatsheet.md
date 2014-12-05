@@ -1,4 +1,5 @@
 #Vagrant
+El Kaddouri Karim
 Handige commando's bij het gebruik van Vagrant
  
  Wat het doet| Commando
@@ -102,7 +103,23 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  write access controleren | ```write list = @foxtrot```
  herstarten van server | ```sudo systemctl restart smb / nmb```
 
+#SELINUX
+###SELinux ###
 
+| Wat het doet                                  | Commando                                    |
+| :---                                    | :---                                       |
+| Status controleren                | `sestatus` |
+| Starten setroubleshoot (daemon)| `setroubleshootd` |
+| Herstellen initiële SELinux-settings| `restorecon -R -v [target-folder]`(bijv. /var/www) |
+| In de logs controleren op output van setroubleshoot | `grep setroubleshoot /var/log/messages` |
+| Config files SELinux | `/etc/selinux/config `                         |
+| Labeling controleren (optie -Z) | `ls -lZ [/usr/sbin/httpd]`                       |
+| Change context | `chcon` |
+| Ingestelde booleans opvragen | `getsebool -a` (en evt. `| grep samba/smbd/nmbd`) |
+| Een boolean instellen| `setsebool [boolean] [0|1]` (-P toevoegen om permanent te maken) |
+| (na install setroubleshoot) | `sealert -l [de opgegeven code]` |
+| Grafische tool| `system-config-selinux` |
+| SELinux-Alerts vinden in de logs | `sealert -a /var/log/audit/audit.log | less` |
 #Fundamenten
 Gaan kijken in  ```man-tests ```
 
