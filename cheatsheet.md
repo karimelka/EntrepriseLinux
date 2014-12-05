@@ -91,6 +91,18 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  Exit status : 0 | ```OK/true```
  Exit status : 1-255 | ```niet OK/FALSE```
  Runnen van bats | ```./bats/bin/bats srv001/testDNS.bats```
+
+#SAMBA
+ Wat het doet| Commando
+ ----------| -------------------
+ indien share parameters staan op public_content_rw_t| ``````
+ public_content_rw_t aanpassen | ```sudo chcon -R -t public_content_rw_t /srv/shares/alpha```
+ Browsable controleren | ```aanpassen in template```
+ kijken naar de rechten voor read| ```valid users```
+ write access controleren | ```write list = @foxtrot```
+ herstarten van server | ```sudo systemctl restart smb / nmb```
+
+
 #Fundamenten
 Gaan kijken in  ```man-tests ```
 
