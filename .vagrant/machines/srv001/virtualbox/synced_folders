@@ -1,0 +1,1 @@
+{"virtualbox":{"/etc/ansible":{"mount_options":["fmode=666"],"guestpath":"/etc/ansible","hostpath":"/home/karim/Documenten/Linux/EntrepriseLinux/ansible","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/karim/Documenten/Linux/EntrepriseLinux","disabled":false}}}
