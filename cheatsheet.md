@@ -15,6 +15,7 @@ Handige commando's bij het gebruik van Vagrant
  Machine volledig uitschakelen | ```vagrant halt```
  Weten hoe je uw virtuele machine hebt genoemt |  ```vagrant boxlist```
  Moet je doen telkens je iets veranderd in je vagrantfile |  ```vagrant reload```
+ Als je een box wilt gaan toevoegen |  ```vagrant box add```
 
 #Git
 Als je een bestand will pushen via de terminal (als er een SSH is opgesteld)
