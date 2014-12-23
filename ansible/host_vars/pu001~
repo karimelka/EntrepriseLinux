@@ -1,0 +1,10 @@
+# host_vars/pu001
+# vi: ft=yaml
+---
+bind_listen_ipv4:
+  - "any"
+bind_listen_ipv6:
+  - "any"
+bind_allow_query:
+  - "192.0.2.0/24"
+  - "172.16.0.0/16"

@@ -1,0 +1,5 @@
+##Variabelen declareren voor de verschillende bestanden
+
+dbname: appdb
+dbuser: appusr
+dbpasswd: apppwd

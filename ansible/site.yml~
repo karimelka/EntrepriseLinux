@@ -14,3 +14,4 @@
   sudo: true
   roles:
     - common
+    - web

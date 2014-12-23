@@ -1,0 +1,21 @@
+#BIND
+
+#Installatie van bind
+  - name: Installatie van bind package
+    yum: pkg={{ item }} state=installed
+    with_items:
+      - bind
+      - bind-utils
+
+#Activeren van bind service
+  - name: activeren van bind service
+    service: name=named state=running enabled=true
+
+#Firewall instellingen voor bind
+  - name: Activeren van firewall instellingen voor DNS
+    firewalld: 
+      permanent=true
+      port=53
+
+
+

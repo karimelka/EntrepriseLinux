@@ -1,0 +1,24 @@
+# db/tasks/main.yml
+---
+#Install MySQL
+- name: Install MySQL
+  yum: pkg={{item}} state=installed
+  with_items:
+    - mariadb
+    - mariadb-server
+    - MySQL-python
+
+#Starten Service
+- name: Start Service
+  service: name=mariadb state=running enabled=yes
+
+#Werken met variabelen
+
+#aanmaken van database
+
+- name: Nieuwe database aanmaken
+  mysql_db: name={{ dbname }} state=present
+
+#Aanmaken van gebruikers
+- name: Aanmaken gebruiker voor de database
+  mysql_user: name={{ dbuser }} password={{ dbpasswd }} priv=*.*:ALL host='localhost' state=present

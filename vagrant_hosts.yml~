@@ -20,8 +20,8 @@
 # `ansible/inventory_dev`
 ---
 - name: pu001
-  ip: 192.0.2.2
+  ip: 172.16.0.10
 
-- name: pu010
-  ip: 192.0.2.10
+- name: pu002
+  ip: 172.16.0.20
 
