@@ -2,7 +2,7 @@
 ---
 
 #Rollen die op de eerste server mogen geinstalleerd worden : Dit is de webserver : WWW
-- hosts: pu010
+- hosts: spu010
   sudo: true
   roles:
     - common
@@ -10,7 +10,8 @@
     - web
 
 #Rollen die op de tweede server mogen geinstalleerd worden : Dit is de DNS server : NS1
-- hosts: pu001
+- hosts: spu001
   sudo: true
   roles:
     - common
+    - bind

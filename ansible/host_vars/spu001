@@ -7,13 +7,13 @@ bind_listen_ipv6:
   - "any"
 
 bind_recursion: "no"
-bind_allow_query: "192.0.2.0/24;172.16.0.0/16;"
+bind_allow_query: "192.0.3.0/24;172.17.0.0/16;"
 bind_zone_name: "linuxlab.net"
 bind_zone_file: "linuxlab.net"
 
 #variabelen zelf nog toegevoegd, zo weinig mogelijk hard coded laten staan
 bind_directory: "/var/named"
-bind_cache_dump: "/var/named/data/cache_dump.db";
+bind_cache_dump: "/var/named/data/cache_dump.db"
 bind_stat_file: "/var/named/data/named_stats.txt"
 bind_mem_stat_file: "/var/named/data/named_mem_stats.txt"
 
@@ -22,16 +22,16 @@ bind_managed_key_dir: "/var/named/dynamic"
 bind_pid_file: "/run/named/named.pid"
 bind_session_keyfile: "/run/named/session.key"
 
-bind_rev_zone1: "2.0.192.in-addr.arpa"
-bind_rev_zone1_file: "2.0.192.in-addr.arpa"
-bind_rev_zone2: "16.172.in-addr.arpa"
-bind_rev_zone2_file: "16.172.in-addr.arpa"
+bind_rev_zone1: "3.0.192.in-addr.arpa"
+bind_rev_zone1_file: "3.0.192.in-addr.arpa"
+bind_rev_zone2: "17.172.in-addr.arpa"
+bind_rev_zone2_file: "17.172.in-addr.arpa"
 
 bind_zone_networks:
-  - ip: "192.0.2"
-    reverse: "2.0.192"
-  - ip: "172.16"
-    reverse: "16.172"
+  - ip: "192.0.3"
+    reverse: "3.0.192"
+  - ip: "172.17"
+    reverse: "17.172"
 
 bind_zone_name_servers:
   - "pu001"
@@ -42,38 +42,38 @@ bind_zone_mail_servers:
 
 bind_zone_hosts:
   - name: pu001
-    ip: 192.0.2.2
+    ip: 192.0.3.2
     aliases:
       - ns1
   - name: pu002
-    ip: 192.0.2.3
+    ip: 192.0.3.3
     aliases:
       - ns2
   - name: pu010
-    ip: 192.0.2.10
+    ip: 192.0.3.10
     aliases:
       - www
   - name: pu020
-    ip: 192.0.2.20
+    ip: 192.0.3.20
     aliases:
      - mail
      - smtp
      - imap
   - name: pr001
-    ip: 172.16.0.2
+    ip: 172.17.0.2
     aliases:
       - dhcp
   - name: pr002
-    ip: 172.16.0.3
+    ip: 172.17.0.3
     aliases:
       - moni
       - nagios
   - name: pr010
-    ip: 172.16.0.10
+    ip: 172.17.0.10
     aliases:
       - intra
       - intranet
   - name: pr011
-    ip: 172.16.0.11
+    ip: 172.17.0.11
     aliases: 
       - file

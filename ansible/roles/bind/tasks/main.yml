@@ -17,6 +17,24 @@
       permanent=true
       port=53/tcp
       state=enabled
-
-
-
+#Kopieren van config file
+  - name: Copy config file
+    template: 
+      src=named.conf
+      dest=/etc/named.conf
+      owner=root
+      group=named
+ 
+#Kopieren van forward en reverse lookup zone
+  - name: Kopieren reverse lookup zone
+    template:
+      src={{item}}
+      dest=/var/named/{{item}}
+      owner=root
+      group=named
+      mode=640
+    with_items:
+      - linuxlab.net
+      - 3.0.192.in-addr.arpa
+      - 17.172.in-addr.arpa
+    notify: restart BIND

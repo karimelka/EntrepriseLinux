@@ -1,0 +1,36 @@
+; Zone file for linuxlab.net
+$ORIGIN linuxlab.net.
+$TTL 1W
+;		primary NS		email address admin
+@ IN SOA pu001.linuxlab.net. hostmaster.linuxlab.net. (
+  14101813	; serial
+  1D		; refresh
+  1H		; retry
+  1W		; expire
+  1D )		; negative caching TTL
+
+		IN	 NS	spu001.linuxlab.net.
+
+@ 		IN	 MX	10 smail.linuxlab.net.
+
+
+spu001 		IN	 A	 192.0.3.2
+ns1 		  IN	 CNAME	 spu001
+spu002 		IN	 A	 192.0.3.3
+ns2 		  IN	 CNAME	 spu002
+spu010 		IN	 A	 192.0.3.10
+www 		  IN	 CNAME	 spu010
+spu020 		IN	 A	 192.0.3.20
+mail 		  IN	 CNAME	 spu020
+smtp 		  IN	 CNAME	 spu020
+imap 		  IN	 CNAME	 spu020
+spr001 		IN	 A	 172.17.0.2
+dhcp 		  IN	 CNAME	 spr001
+spr002 		IN	 A	 172.17.0.3
+moni 		  IN	 CNAME	 spr002
+nagios 		IN	 CNAME	 spr002
+spr010 		IN	 A	 172.17.0.10
+intra 		IN	 CNAME	 spr010
+intranet 	IN	 CNAME	 spr010
+spr011 		IN	 A	     172.17.0.11
+file 		  IN	 CNAME	 spr011

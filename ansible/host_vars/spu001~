@@ -5,13 +5,28 @@ bind_listen_ipv4:
   - "any"
 bind_listen_ipv6:
   - "any"
-bind_allow_query:
-  - "192.0.2.0/24"
-  - "172.16.0.0/16"
 
 bind_recursion: "no"
-
+bind_allow_query: "192.0.3.0/24;172.17.0.0/16;"
 bind_zone_name: "linuxlab.net"
+bind_zone_file: "linuxlab.net"
+
+#variabelen zelf nog toegevoegd, zo weinig mogelijk hard coded laten staan
+bind_directory: "/var/named"
+bind_cache_dump: "/var/named/data/cache_dump.db"
+bind_stat_file: "/var/named/data/named_stats.txt"
+bind_mem_stat_file: "/var/named/data/named_mem_stats.txt"
+
+bind_key_file: "/etc/named.iscdlv.key"
+bind_managed_key_dir: "/var/named/dynamic"
+bind_pid_file: "/run/named/named.pid"
+bind_session_keyfile: "/run/named/session.key"
+
+bind_rev_zone1: "3.0.192.in-addr.arpa"
+bind_rev_zone1_file: "3.0.192.in-addr.arpa"
+bind_rev_zone2: "17.172.in-addr.arpa"
+bind_rev_zone2_file: "17.172.in-addr.arpa"
+
 bind_zone_networks:
   - ip: "192.0.2"
     reverse: "2.0.192"

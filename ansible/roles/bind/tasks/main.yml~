@@ -15,7 +15,8 @@
   - name: Activeren van firewall instellingen voor DNS
     firewalld: 
       permanent=true
-      port=53
+      port=53/tcp
+      state=enabled
 
 
 

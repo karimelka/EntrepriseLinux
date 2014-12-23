@@ -19,9 +19,9 @@
 # If you run on *Windows*, you should also add the host names to
 # `ansible/inventory_dev`
 ---
-- name: pu001
-  ip: 192.0.2.2
+- name: spu001
+  ip: 192.0.3.2
 
-- name: pu010
-  ip: 192.0.2.10
+- name: spu010
+  ip: 192.0.3.10
 
