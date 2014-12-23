@@ -20,8 +20,10 @@
 # `ansible/inventory_dev`
 ---
 - name: spu001
-  ip: 192.0.2.2
+  ip: 192.0.3.2
 
 - name: spu010
-  ip: 192.0.2.10
+  ip: 192.0.3.10
 
+- name: spr011
+  ip: 172.17.0.11

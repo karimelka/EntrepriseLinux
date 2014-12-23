@@ -10,8 +10,14 @@
     - web
 
 #Rollen die op de tweede server mogen geinstalleerd worden : Dit is de DNS server : NS1
-- hosts: spu002
+- hosts: spu001
   sudo: true
   roles:
     - common
     - bind
+
+#Rollen die op de derde server mogen geinstalleerd worden: dit is de file server : file
+- hosts: spr011
+  sudo: true
+  roles:
+    - samba

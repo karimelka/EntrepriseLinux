@@ -1,0 +1,65 @@
+#Installeren van de samba service
+  - name: Installeren samba service
+    yum: pkg={{item}} state=installed
+    with_items:
+      - libsemanage-python
+      - samba-common
+      - samba
+      - samba-client
+    tags: samba
+
+#Starten van de samba service
+  - name: starten van de samba service
+    service: name={{item}} state=running enabled=true 
+    with_items:
+      - nmb
+      - smb
+#Kopieren van smb.conf van host naar VM
+
+  - name: Samba configuration
+    template:
+      dest=/etc/samba/smb.conf
+      src=smb.conf.j2
+      validate='testparm -s %s'
+    notify: Restart Samba
+    tags: samba
+
+#Firewall regels voor Samba file server
+  - name: Firewall regels voor Samba File Server
+    firewalld: service= {{ item[0] }} permanent={{item[1]}} state=enabled
+    with_nested:
+      - [ samba ]
+      - [ true, false ]
+    tags: samba
+
+#Set SEbool for home directorys
+  - name: setsebool for home dirs
+    seboolean: name={{item}} state=yes persistent=yes
+    with_items:
+      - use_samba_home_dirs
+      - samba_enable_home_dirs
+
+  - name: Create groups
+    group: name={{ item.name }} state=present
+    with_items: samba_shares
+    tags: samba
+
+  - name: Main directory for Samba shares
+    file:
+      state=directory
+      path={{ samba_share_root }}
+    tags: samba
+
+  - name: Create share directories
+    with_items: samba_shares
+    file:
+      state=directory
+      path={{ samba_share_root }}/{{ item.name }}
+      owner=root
+      group={{ item.name }}
+      setype={{ item.setype|default('public_content_rw_t') }}
+      mode={{ item.create_mode }}
+    # read the values for these settings from the host_vars. If they were not set, use a sane default.
+    tags: samba
+
+
