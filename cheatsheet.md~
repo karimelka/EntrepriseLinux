@@ -33,6 +33,7 @@ en dan voor de code naar de remote te sturen : git push -u origin master
 #Diversen
  <Opgelet : Bij het installeren zijn we erop gebotst dat je echt in de folder moet zitten om succes te hebben. Screenshot hiervan zal nog worden toegevoegd>
  |Wisselen van schijven in bash|``` /d/Users/... ```| -----
+ |Aanmaken van verschillende subfolders onder een folder|``` mkdir -p ftp/{handlers,tasks,templates} ```| -----
 
 Opletten voor dubbele quotes die niet kunnen werken
 #Ansible

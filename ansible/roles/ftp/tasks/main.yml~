@@ -1,0 +1,48 @@
+##Roles/ftp/tasks
+
+#Installeren vsftpd
+- name: Install FTP services
+  yum: name=vsftpd state=installed
+  tags: ftp
+
+#starten van FTP
+- name: Starten FTP services
+  service: name=vsftpd state=started enabled=true
+  tags: ftp
+
+#Kopieren configuratiefile
+- name: Kopieren configuratiebestand
+  template:
+    src=vsftpd.conf.j2
+    dest=/etc/vsftpd/vsftpd.conf
+    mode=600
+    owner=root
+    group=root
+
+#Instellen van firewall
+- name: Set firewall rules
+  firewalld:
+    service=ftp
+    state=enabled
+    permanent={{ item }}
+  with_items:
+    - true
+    - false
+  tags: ftp
+
+#SELINUX instellingen
+- name: enable home dirs SELinux
+  seboolean: name={{ item }} state=yes persistent=yes
+  with_items:
+    - ftp_home_dir
+    - ftpd_full_access
+
+#Connection Tracking
+- name: Enable connection tracking
+  lineinfile:
+    dest=/etc/sysconfig/iptables-config
+    regexp='^IPTABLES_MODULES='
+    line='IPTABLES_MODULES="ip_conntrack_ftp"'
+    state=present
+  tags: ftp
+  notify: reload firewall

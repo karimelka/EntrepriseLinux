@@ -1,5 +1,8 @@
 
-ftp_anon_root: /srv/shares
+# host_vars/spr011
+# vi: ft=yaml
+---
+#SAMBA
 samba_netbios_name: FILESRV
 samba_workgroup: LINUXLAB
 samba_server_string: Fileserver spr011
@@ -7,7 +10,7 @@ samba_server_string: Fileserver spr011
 samba_enable_homes: 'yes'
 
 samba_share_root: /srv/shares
-ftp_local_root: /srv/shares
+
 
 samba_shares:
   - name: public
@@ -164,3 +167,7 @@ samba_users:
       - public    
     password: bertvv
     shell: /bin/bash
+
+#FTP
+ftp_anon_root: /srv/shares
+ftp_local_root: /srv/shares

@@ -20,4 +20,5 @@
 - hosts: spr011
   sudo: true
   roles:
+    - common
     - samba

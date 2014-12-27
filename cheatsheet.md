@@ -106,6 +106,10 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  write access controleren | ```write list = @foxtrot```
  herstarten van server | ```sudo systemctl restart smb / nmb```
 
+#USERS
+ Wat het doet| Commando
+ ----------| -------------------
+ tonen van users op uw machine| ```cat /etc/passwd```
 #SELINUX
 ###SELinux ###
 

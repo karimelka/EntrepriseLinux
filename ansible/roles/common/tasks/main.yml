@@ -8,3 +8,9 @@
     - git
     - tree
     - nano
+    
+- name: activate selinux enforcing
+  selinux: state=enforcing policy=targeted
+
+- name: Enable Firewall
+  service: name=firewalld state=running enabled=true

@@ -1,11 +1,11 @@
 
-# host_vars/qpr011
+# host_vars/spr011
 # vi: ft=yaml
 ---
 ftp_anon_root: /srv/shares
 samba_netbios_name: FILESRV
 samba_workgroup: LINUXLAB
-samba_server_string: Fileserver pr011
+samba_server_string: Fileserver spr011
 
 samba_enable_homes: 'yes'
 
@@ -167,4 +167,3 @@ samba_users:
       - public    
     password: bertvv
     shell: /bin/bash
-  

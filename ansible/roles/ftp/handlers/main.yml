@@ -1,0 +1,7 @@
+# roles/ftp/handlers/main.yml
+---
+- name: Restart FTP
+  service: name=vsftpd state=restarted
+
+- name: reload firewall
+  service: name=firewalld state=reloaded
