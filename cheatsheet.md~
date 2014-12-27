@@ -94,7 +94,7 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
  Exit status : 0 | ```OK/true```
  Exit status : 1-255 | ```niet OK/FALSE```
  Runnen van bats | ```./bats/bin/bats srv001/testDNS.bats```
-
+ Bestand uitvoeren | ``` ./vagrant/test/runbats.sh```
 #SAMBA
  Wat het doet| Commando
  ----------| -------------------
@@ -122,6 +122,35 @@ voorbeeld hiervan : ```rdesktop -u linuxgebruiker windowsisookleuk.dynamic-dns.c
 | (na install setroubleshoot) | `sealert -l [de opgegeven code]` |
 | Grafische tool| `system-config-selinux` |
 | SELinux-Alerts vinden in de logs | `sealert -a /var/log/audit/audit.log | less` |
+
+#Terminator
+
+| Wat het doet                                  | Commando                                    |
+| :---                                    | :---                                       |
+| Status controleren                | `sestatus` |
+
+  |   Move to the Above Terminal |  `Alt+Up_Arrow_Key` | 
+   |  Move to the Below Terminal |  `Alt+Down_Arrow_Key`| 
+   |  Move to the Left Terminal |  `Alt+Left_Arrow_Key`| 
+    | Move to the Right Terminal | ` Alt+Right_Arrow_Key`| 
+    | Copy a text to clipboard | `Ctrl+Shift+c`| 
+    | Paste a text from Clipboard | ` Ctrl+Shift+v`| 
+    | Close the Current Terminal |  `Ctrl+Shift+w`| 
+    | Quit the Terminator |  `Ctrl+Shift+q`| 
+    | Toggle Between Terminals |  `Ctrl+Shift+x`| 
+    | Open New Tab|  `Ctrl+Shift+t`| 
+    | Move to Next Tab| `Ctrl+page_Down`| 
+    | Move to Previous Tab |  `Ctrl+Page_up`| 
+    | Increase Font size| `Ctrl+(+)`| 
+    | Decrease Font Size| `Ctrl+(­)`| 
+    | Reset Font Size to Original|` Ctrl+0`| 
+    | Toggle Full Screen Mode| `F11`| 
+    | Reset Terminal| `Ctrl+Shift+R`| 
+    | Reset Terminal and Clear Window| `Ctrl+Shift+G`| 
+    | Remove all the terminal grouping| `Super+Shift+t`| 
+    | Group all Terminal into one| `Super+g`| 
+
+
 #Fundamenten
 Gaan kijken in  ```man-tests ```
 

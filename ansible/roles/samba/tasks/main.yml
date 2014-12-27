@@ -1,65 +1,93 @@
-#Installeren van de samba service
-  - name: Installeren samba service
-    yum: pkg={{item}} state=installed
-    with_items:
-      - libsemanage-python
-      - samba-common
-      - samba
-      - samba-client
-    tags: samba
+# File: roles/samba/tasks/main.yml
+---
 
-#Starten van de samba service
-  - name: starten van de samba service
-    service: name={{item}} state=running enabled=true 
-    with_items:
-      - nmb
-      - smb
-#Kopieren van smb.conf van host naar VM
+- name: Install Samba packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - libsemanage-python
+    - samba-common
+    - samba
+    - samba-client
+  tags: samba
 
-  - name: Samba configuration
-    template:
-      dest=/etc/samba/smb.conf
-      src=smb.conf.j2
-      validate='testparm -s %s'
-    notify: Restart Samba
-    tags: samba
+- name: setsebool for home dirs
+  seboolean: name={{item}} state=yes persistent=yes
+  with_items:
+    - use_samba_home_dirs
+    - samba_enable_home_dirs
 
-#Firewall regels voor Samba file server
-  - name: Firewall regels voor Samba File Server
-    firewalld: service= {{ item[0] }} permanent={{item[1]}} state=enabled
-    with_nested:
-      - [ samba ]
-      - [ true, false ]
-    tags: samba
+- name: Create groups
+  group: name={{ item.name }} state=present
+  with_items: samba_shares
+  tags: samba
 
-#Set SEbool for home directorys
-  - name: setsebool for home dirs
-    seboolean: name={{item}} state=yes persistent=yes
-    with_items:
-      - use_samba_home_dirs
-      - samba_enable_home_dirs
+- name: Main directory for Samba shares
+  file:
+    state=directory
+    path={{ samba_share_root }}
+  tags: samba
 
-  - name: Create groups
-    group: name={{ item.name }} state=present
-    with_items: samba_shares
-    tags: samba
-
-  - name: Main directory for Samba shares
-    file:
-      state=directory
-      path={{ samba_share_root }}
-    tags: samba
-
-  - name: Create share directories
-    with_items: samba_shares
-    file:
-      state=directory
-      path={{ samba_share_root }}/{{ item.name }}
-      owner=root
-      group={{ item.name }}
-      setype={{ item.setype|default('public_content_rw_t') }}
-      mode={{ item.create_mode }}
+- name: Create share directories
+  with_items: samba_shares
+  file:
+    state=directory
+    path={{ samba_share_root }}/{{ item.name }}
+    owner=root
+    group={{ item.name }}
+    setype={{ item.setype|default('public_content_rw_t') }}
+    mode={{ item.create_mode }}
     # read the values for these settings from the host_vars. If they were not set, use a sane default.
-    tags: samba
+  tags: samba
 
+- name: Samba configuration
+  template:
+    dest=/etc/samba/smb.conf
+    src=smb.conf.j2
+    validate='testparm -s %s'
+  notify: Restart Samba
+  tags: samba
 
+- name: Start Samba service
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+    - nmb
+    - smb
+  tags: samba
+
+- name: Firewall rules for Samba file share
+  firewalld: service={{ item[0] }} permanent={{ item[1] }} state=enabled
+  with_nested:
+    - [ samba ]
+    - [ true, false ]
+  tags: samba
+
+# Creating users involves setting a password. Here, it is set from the
+# plaintext value in the host_vars. This task will encrypt the password for use
+# in /etc/shadow. You need to check out two things:
+# - encrypting is done using a custom filter plugin that should be installed
+#   in ansible/filter_plugins/passwdhash.py
+# - If the passwords in the shadow file on your system start with $1$, you don't
+#   have to change this code. However, if they start with $6$, you need to
+#   change "md5crypt" in the code below into sha512crypt. More info in the
+#   filter plugin itself.
+- name: Make sure system user accounts exist
+  user:
+    name={{ item.name }}
+    state=present
+    comment="{{ item.given_name }} {{ item.surname }}"
+    shell={{ item.shell|default('/sbin/nologin') }}
+    createhome=yes
+    groups={{ ','.join(item.groups) }}
+    password={{ item.password|md5crypt|default('!!') }}
+  with_items: samba_users
+  when: samba_users is defined
+  tags: samba
+
+- name: Make sure Samba users exist
+  shell: >
+    (pdbedit -L | grep {{ item.name }} 2>&1 > /dev/null) \
+    || (echo {{ item.password }}; echo {{ item.password }}) \
+    | smbpasswd -s -a {{ item.name }}
+  with_items: samba_users
+  when: samba_users is defined
+  tags: samba

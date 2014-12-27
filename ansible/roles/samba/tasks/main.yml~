@@ -15,19 +15,13 @@
       - nmb
       - smb
 #Kopieren van smb.conf van host naar VM
-  - name: Samba configuratie kopieren
-    template: 
-      dest=/etc/samba/smb.conf
-      src=smb.conf.j2'
-    notify: restart samba
-    tags: samba
 
-#Firewall regels voor Samba file server
-  - name: Firewall regels voor Samba File Server
-    firewalld: service= {{ item[0] }} permanent={{item[1]}} state=enabled
-    with_nested:
-      - [ samba ]
-      - [ true, false ]
+  - name: Samba configuration
+    template:
+      dest=/etc/samba/smb.conf
+      src=smb.conf.j2
+      validate='testparm -s %s'
+    notify: Restart Samba
     tags: samba
 
 #Set SEbool for home directorys
@@ -37,17 +31,20 @@
       - use_samba_home_dirs
       - samba_enable_home_dirs
 
+#Aanmaken gebruikersgroepen
   - name: Create groups
     group: name={{ item.name }} state=present
     with_items: samba_shares
     tags: samba
 
+#Aanmaken hoofdfolder
   - name: Main directory for Samba shares
     file:
       state=directory
       path={{ samba_share_root }}
     tags: samba
 
+#Aanmaken share folders
   - name: Create share directories
     with_items: samba_shares
     file:
@@ -57,7 +54,35 @@
       group={{ item.name }}
       setype={{ item.setype|default('public_content_rw_t') }}
       mode={{ item.create_mode }}
-    # read the values for these settings from the host_vars. If they were not set, use a sane default.
     tags: samba
 
+#Controleren of gebruikers bestaan
+- name: Make sure system user accounts exist
+  user:
+    name={{ item.name }}
+    state=present
+    comment="{{ item.given_name }} {{ item.surname }}"
+    shell={{ item.shell|default('/sbin/nologin') }}
+    createhome=yes
+    groups={{ ','.join(item.groups) }}
+    password={{ item.password|md5crypt|default('!!') }}
+  with_items: samba_users
+  when: samba_users is defined
+  tags: samba
+
+#Controleren of de gebruikers zeker bestaan
+- name: Make sure Samba users exist
+  shell: >
+    (pdbedit -L | grep {{ item.name }} 2>&1 > /dev/null) \
+    || (echo {{ item.password }}; echo {{ item.password }}) \
+    | smbpasswd -s -a {{ item.name }}
+
+
+#Firewall regels voor Samba file server
+  - name: Firewall regels voor Samba File Server
+    firewalld: service= {{ item[0] }} permanent={{item[1]}} state=enabled
+    with_nested:
+      - [ samba ]
+      - [ true, false ]
+    tags: samba
 
