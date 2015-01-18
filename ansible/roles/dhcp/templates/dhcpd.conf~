@@ -1,0 +1,21 @@
+##DHCP.Conf template file
+##Karim - RunIT - 27 december 2014
+
+subnet {{network_ip}} {{subnet}}
+{
+	option routers			{{router}};
+	option subnet-mask		{{subnet}};
+	option domain-search		{{domain}};
+	option domain-name-servers	{{dns}};
+	option time-offset		-18000; #EST
+
+  range {{range}};
+}
+
+{%for machine in internemac%}
+host {{machine.name}} {
+	option host-name "{{machine.name}}.{{domain}}";
+        hardware ethernet {{machine.mac}};
+        fixed-address {{machine.ip}}
+}
+{% endfor %}

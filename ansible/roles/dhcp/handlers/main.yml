@@ -1,0 +1,5 @@
+#Handler voor roles/dhcp/handlers
+
+#Herstarten van de DHCP rol
+- name: Restart DHCP server
+  service: name=dhcpd state=reloaded enabled=yes

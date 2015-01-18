@@ -23,3 +23,10 @@
     - common
     - samba
     - ftp
+
+#Rollen die op de vierde server mogen geinstalleerd worden: dit is de DHCP server : dhcp
+- hosts: spr001
+  sudo: true
+  roles:
+    - common
+    - dhcp

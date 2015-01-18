@@ -63,6 +63,39 @@ end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+  # Router
+  #config.vm.define 'router' do |router|
+    #router.vm.box = 'vyos-1.1.0.box'
+    #router.vm.network :private_network,
+     # ip: '192.0.3.254',
+     # netmask: '255.255.255.0',
+    #  auto_config: false
+    #router.vm.network :private_network,
+    #  ip: '172.16.255.254',
+     # netmask: '255.255.0.0',
+    #  auto_config: false
+
+    #router.vm.provider :virtualbox do |vb|
+    #  vb.name = 'router'
+    #end
+
+   # router.vm.provision "shell" do |sh|
+     # sh.path = "scripts/router-config.vy"
+    #end
+  #end
+
+#PC
+  config.vm.define 'pc' do |pc|
+    pc.vm.box = 'CentOS70'
+    pc.vm.hostname = 'pc'
+    pc.vm.network :private_network,
+      auto_config: true
+
+    pc.vm.provider :virtualbox do |vb|
+      vb.name = 'pc'
+    end
+  end
+
   config.vm.box = 'CentOS70'
 
   hosts.each do |host|
@@ -81,4 +114,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   provision_ansible(config)
 end
-

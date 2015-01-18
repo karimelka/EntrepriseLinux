@@ -1,0 +1,16 @@
+#Tasks file voor dhcp roles/dhcp/tasks
+
+#Installeren van DHCP rol
+- name: installeren DHCP rol
+  yum: pkg={{item}} state=installed
+  with_items:
+    - dhcp
+
+#Kopieren van template
+- name: Kopieren dhcpd.conf
+  template: 
+    src=dhcpd.conf
+    dest=/etc/dhcp/dhcpd.conf
+    group=root
+    owner=root
+    
